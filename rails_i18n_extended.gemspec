@@ -3,8 +3,8 @@ require_relative 'lib/rails_i18n_extended/version'
 Gem::Specification.new do |spec|
   spec.name          = "rails_i18n_extended"
   spec.version       = RailsI18nExtended::VERSION
-  spec.authors       = ["Johan VAN RYSEGHEM"]
-  spec.email         = ["johan@about-blank.fr"]
+  spec.authors       = ["Johan VAN RYSEGHEM", "Etienne DEPAULIS"]
+  spec.email         = ["johan@about-blank.fr", "Etienne.depaulis@gmail.com"]
 
   spec.summary       = 'Add a few helpers for I18n in RoR'
   spec.description   = %q{This gem adds helpers on ActiveRecord models to shorten the I18n.t calls. It also provides a fallback on the default locale, and a glocab default mechanism (see Readme for more infos)}
