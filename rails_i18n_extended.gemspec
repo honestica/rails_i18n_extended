@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["johan@about-blank.fr"]
 
   spec.summary       = 'Add a few helpers for I18n in RoR'
-  # spec.description   = %q{TODO: Write a longer description or delete this line.}
+  spec.description   = %q{This gem adds helpers on ActiveRecord models to shorten the I18n.t calls. It also provides a fallback on the default locale, and a glocab default mechanism (see Readme for more infos)}
   spec.homepage      = "https://github.com/honestica/rails_i18n_extended"
   spec.license       = "MIT"
   spec.required_ruby_version = Gem::Requirement.new(">= 2.3.0")
@@ -28,6 +28,6 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   # spec.add_dependency "rails"
-  spec.add_dependency "activerecord"
+  spec.add_dependency "activerecord", ">= 6"
   spec.add_dependency "sqlite3"
 end
