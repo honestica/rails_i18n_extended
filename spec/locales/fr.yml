@@ -1,0 +1,12 @@
+fr:
+  activerecord:
+    models:
+      model:
+        one: model
+        other: models
+
+  test:
+    defaults:
+      missing_with_default: la default value
+    scope:
+      foo: Bar en francais

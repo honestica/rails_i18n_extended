@@ -1,0 +1,30 @@
+en:
+  'true': 'Yes'
+  'false': 'No'
+
+  activerecord:
+    models:
+      model:
+        one: model
+        other: models
+    attributes:
+      model:
+        test_attribute: Test attribute
+        test_enum_attribute: Test enum attribute
+        test_enum_attributes:
+          enum_key: enum value
+
+  actions:
+    model:
+      test_action: Test action
+
+  panels:
+    model:
+      test_panel: Test panel
+
+  test:
+    defaults:
+      missing_with_default: the default value
+      missing_with_default_only_en: the default value only EN
+    scope:
+      foo: Bar
