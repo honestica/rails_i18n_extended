@@ -4,22 +4,19 @@ module I18n
   class << self
 
     def translate_with_default key, options={}, original=nil
-      begin
-        self.translate_without_default(key, **{raise: true}.update(options))
-      rescue => e
-        split = key.to_s.split('.')
-        if split.size <= 2
-          translate_without_default original || key, **options
-        else
-          v = split.pop
-          v2 = split.pop
-          split.pop if v2 == 'defaults'
-          split << 'defaults' << v
-          new_key = split.join('.')
-          translate_with_default new_key, options, original || key
+      defaults = []
+      chain = key.to_s.split('.')
+      unless chain[-2] == 'defaults'
+        last = chain.pop
+        while chain.size > 0
+          chain.pop
+          defaults << (chain + ['defaults', last]).join('.').to_sym
         end
       end
+
+      translate_without_default(key, **{default: defaults}.update(options))
     end
+
     alias_method :translate_without_default, :translate
     alias_method :translate, :translate_with_default
     alias_method :t, :translate
@@ -27,6 +24,7 @@ module I18n
     def translate_with_fallback(key = nil, **options)
       locale = options[:locale] || I18n.locale
       intended_to_raise = options[:raise]
+
       translate_without_fallback(key, options.dup.update(raise: true))
     rescue I18n::MissingTranslationData => e
       raise if locale == I18n.default_locale && intended_to_raise
