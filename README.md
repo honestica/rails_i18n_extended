@@ -1,8 +1,6 @@
 # RailsI18nExtended
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/rails_i18n_extended`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+The gem adds a bunch of helpers to ease the use of I18n in your rails project.
 
 ## Installation
 
@@ -22,7 +20,19 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+The following helpers are available:
+- `Model.t` will get the model name
+- `Model.ts` will get the model name (pluralized)
+- `Model.t_action(action_name)` will get localized action
+- `Model.t_panel(panel_name)` will get localized panel name
+- `Model.t_attr(attr)` will get name of the attribute
+- `model.t_attr(attr)` (on an instance) will get name of the attribute
+- `model.t_enum(attr)` (on an instance) will get value of an enum attribue, localized
+
+You can also call the method `t` on booleans, or on a string to get its translation as a key.
+You can call `l` on all time-related classes to get their localized representation.
+
+We also added a "default fallback" behaviour: when looking for the key `a.b.c.key`, before failing, I18n will look for `a.b.default.key`,  `a.default.key` and  `default.key`
 
 ## Development
 
@@ -32,7 +42,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/rails_i18n_extended.
+Bug reports and pull requests are welcome on GitHub at https://github.com/honestica/rails_i18n_extended.
 
 
 ## License
