@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    rails_i18n_extended (0.1.1)
+    rails_i18n_extended (0.1.2)
       activerecord (>= 6)
       sqlite3
 
