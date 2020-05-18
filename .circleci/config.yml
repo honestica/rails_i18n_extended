@@ -1,4 +1,6 @@
 version: 2.1
+orbs:
+  ruby: circleci/ruby@0.1.2
 
 jobs:
   checkout_code:
@@ -12,6 +14,24 @@ jobs:
           paths:
             - ~/circleci-app
 
+  bundle_dependencies:
+    docker:
+      - image: circleci/ruby:2.6.5-node-browsers
+    working_directory: ~/circleci-app
+    steps:
+      - restore_cache:
+          keys:
+            - v1-repo-{{ .Environment.CIRCLE_SHA1 }}
+      - restore_cache:
+          keys:
+            - v1-bundle-{{ checksum "Gemfile.lock" }}
+      - run: gem install bundler:2.0.2
+      - run: bundle install --path vendor/bundle
+      - save_cache:
+          key: v1-bundle-{{ checksum "Gemfile.lock" }}
+          paths:
+            - ~/circleci-app/vendor/bundle
+
   test:
     docker:
       - image: circleci/ruby:2.6.5-node-browsers
@@ -24,8 +44,9 @@ jobs:
       - restore_cache:
           keys:
             - v1-bundle-{{ checksum "Gemfile.lock" }}
-
-      - run: bundle exec rspec --color --require spec_helper --format RspecJunitFormatter --out ~/rspec/rspec.xml spec --format progress
+      - run: gem install bundler:2.0.2
+      - run: bundle install --path vendor/bundle
+      - run: bundle exec rspec --color --require spec_helper --out ~/rspec/rspec.xml spec --format progress
       - store_test_results:
           path: ~/rspec
 
