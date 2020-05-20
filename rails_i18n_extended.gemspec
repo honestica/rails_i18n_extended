@@ -29,5 +29,5 @@ Gem::Specification.new do |spec|
 
   # spec.add_dependency "rails"
   spec.add_dependency "activerecord", ">= 6"
-  spec.add_dependency "sqlite3"
+  spec.add_development_dependency "sqlite3"
 end
